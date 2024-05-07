@@ -27,6 +27,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Faraday gem
+gem "faraday"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -72,6 +75,7 @@ group :development do
 end
 
 group :test do
+  gem "webmock"
   gem "rspec-rails"
   gem "capybara"
   gem "launchy"
