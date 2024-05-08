@@ -20,10 +20,14 @@ class UsersController < ApplicationController
   end
   
   def discover
-    
-    
+    @user = User.find(params[:id])
   end
 
+  def search
+    conn = Faraday.new(url: "https://api.themoviedb.org/") do |faraday|
+      faraday.headers["X-API-Key"] = Rails.application.credentials.movie[:key]
+    end
+  end
 
 
 private
