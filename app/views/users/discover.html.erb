@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <h1>Discover movies page</h1>
+    <%= button_to 'Discover Top Rated Movies', movie_result_path, params:  %>
+    <div class="search-form">
+      <%= form_with url: movie_result_path, local: true do |f| %>
+        <%= f.label :search, "Search by movie title:" %>
+        <%= f.text_field :search %>
+        <%= f.submit 'Search' %>
+      <% end %>
+    </div>
+</div>

@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root "welcome#index"
   get '/register', to: 'users#new', as: 'register_user'
 
+  post '/users/:id/discover', to: 'users#discover', as: 'user_discover'
+
   resources :users, only: [:show, :create] do
-    get 'discover', on: :member
   end
 
 end
