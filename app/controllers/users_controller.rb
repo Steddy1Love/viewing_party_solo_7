@@ -21,14 +21,8 @@ class UsersController < ApplicationController
   
   def discover
     @user = User.find(params[:id])
+    @facade = DiscoverFacade.new(params[:name])
   end
-
-  def search
-    conn = Faraday.new(url: "https://api.themoviedb.org/") do |faraday|
-      faraday.headers["X-API-Key"] = Rails.application.credentials.movie[:key]
-    end
-  end
-
 
 private
 
