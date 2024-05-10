@@ -15,7 +15,7 @@ class DiscoverFacade
 
     json = service.movie(id)
     binding.pry
-    movies = json[:id].map do |movie_data|
+    movie = json[:id].map do |movie_data|
       Movie.new(movie_data)
     end
   end
