@@ -1,6 +1,10 @@
-class ApiService
+class MovieListService
   def movies
     get_url("/3/discover/movie?limit=20")
+  end
+
+  def movie(id)
+    get_url("/3/discover/movie/#{id}")
   end
 
   def get_url(url)
