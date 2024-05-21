@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @facade = MovieFacade.new
   end
 
   def create
@@ -19,10 +20,6 @@ class UsersController < ApplicationController
     end   
   end
   
-  def discover
-    @user = User.find(params[:id])
-    @facade = DiscoverFacade.new(params[:name])
-  end
 
 private
 

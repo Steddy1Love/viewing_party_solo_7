@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <h1><%= @facade.movie.title %> Viewing Party</h1>
+
+  <section id="buy_movie">
+    <h2>Buy:</h2>
+    <% @facade.movie_buy_services.each do |service| %>
+      <%= image_tag("https://image.tmdb.org/t/p/w200#{service[:logo_path]}", width: "50px") %>
+    <% end %>
+  </section>
+
+  <section id="rent_movie">
+    <h2>Rent:</h2>
+    <% @facade.movie_rental_services.each do |service| %>
+      <%= image_tag("https://image.tmdb.org/t/p/w200#{service[:logo_path]}", width: "50px") %>
+    <% end %>
+  </section>
+  <p>Buy/Rent data provided by JustWatch</p>
+</div>

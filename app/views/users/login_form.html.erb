@@ -1,0 +1,10 @@
+<section class="login_form">
+  <%= form_with url: login_path, method: :post do |f| %>
+    <%= f.label :email, 'Email: ' %>
+    <%= f.email_field :email %>
+    <%= f.label :password, 'Password: ' %>
+    <%= f.password_field :password %>
+
+    <%= f.submit 'Log In' %>
+  <% end %>
+</section>

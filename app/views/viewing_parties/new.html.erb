@@ -1,0 +1,39 @@
+<div class="container text-center">
+  <h1>Create a Movie Party for <%= @facade.movie.title %></h1>
+  <%= button_to 'Discover Page', user_discover_index_path(@user), method: :get %>
+
+  <div class="viewing_party_form">
+    <p>Movie Title: <%= @facade.movie.title %></p>
+    <ul>
+      <%= form_with url: user_movie_viewing_parties_path(@user, @facade.movie.id), data: {turbo: false} do |f| %>
+        <li>
+          <%= f.label :duration, "Duration: " %>
+          <%= f.number_field :duration, value: @facade.movie.runtime %>
+        </li>
+        <li>
+          <%= f.label :date, "Date: " %>
+          <%= f.date_field :date, value: Date.today %>
+        </li>
+        <li>
+          <%= f.label :start_time, "Start Time: " %>
+          <%= f.time_field :start_time %>
+        </li>
+        <li>
+          <%= f.label :guest_1, "Guest 1: " %>
+          <%= f.text_field :guest_1 %>
+        </li>
+        <li>
+          <%= f.label :guest_2, "Guest 2: " %>
+          <%= f.text_field :guest_2 %>
+        </li>
+        <li>
+          <%= f.label :guest_3, "Guest 3: " %>
+          <%= f.text_field :guest_3 %>
+        </li>
+        <li>
+          <%= f.submit 'Create Party' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

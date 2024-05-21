@@ -1,0 +1,53 @@
+<div class="container text-center">
+  <h1><%= @facade.movie.title %></h1>
+
+  <div class="row">
+    <%= button_to 'Discover Page', user_discover_index_path(@user), method: :get %>
+    <%= button_to "Create Viewing Party for #{@facade.movie.title}", new_user_movie_viewing_party_path(@user, @facade.movie.id), method: :get %>
+    <%= link_to 'Get Similar Movies', user_movie_similar_index_path(@user, @facade.movie.id) %>
+  </div>
+
+  <div id="movie_info">
+    <div class="row">
+      <ul class="same_line_list">
+        <li>Vote: <%= @facade.movie.vote_average.round(2) %></li>
+        <li>Runtime: <%= @facade.movie.runtime_converted %></li>
+        <li>Genre: <%= @facade.movie.genre_names %></li>
+      </ul>
+    </div>
+
+    <div class="row text-start justify-content-center">
+      <div class="col-8">
+        <h3>Summary</h3>
+        <p><%= @facade.movie.summary %></p>
+      </div>
+    </div>
+
+      <div class="row ">
+        <div id="cast" class="col-6">
+          <h3>Cast</h3>
+          <ul class="alternating_color_list">
+            <% @facade.movie.top_ten_cast.each do |member| %>
+              <li>
+                <p>Name: <%= member[:name] %></p>
+                <p>Character: <%= member[:character] %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div id="reviews" class="col-6">
+          <h3><%= @facade.movie.review_count %> Reviews</h3>
+          <ul class="alternating_color_list">
+            <% @facade.movie.reviews.each do |review| %>
+              <li>
+                <p>Author: <%= review[:author] %></p>
+                <p>Review: <%= review[:content] %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

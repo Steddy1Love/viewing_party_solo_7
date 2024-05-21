@@ -1,4 +1,5 @@
 # Viewing Party Solo - Base Repo
+## Credit to Jared M Hobson for the current iteration of the project.
 
 This is the base repo for the [Viewing Party Solo project](https://backend.turing.edu/module3/projects/viewing_party_solo) used for Turing's Backend Module 3.
 
