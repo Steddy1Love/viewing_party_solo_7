@@ -12,9 +12,11 @@
 end
 
 # create Parties
-5.times do 
-   ViewingParty.create!(duration: rand(0..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"))
-end
+ViewingParty.create!(duration: rand(180..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"), movie_id: 204)
+ViewingParty.create!(duration: rand(180..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"), movie_id: 330459)
+ViewingParty.create!(duration: rand(180..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"), movie_id: 11099)
+ViewingParty.create!(duration: rand(180..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"), movie_id: 157336)
+ViewingParty.create!(duration: rand(180..240), date: Faker::Date.forward(days: rand(1..14)), start_time: Time.new.strftime("%H:%M"), movie_id: 11817)
 
 # set Hosts 
 UserParty.create!(viewing_party: ViewingParty.first, user: User.first, host: true)
