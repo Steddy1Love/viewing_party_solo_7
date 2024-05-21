@@ -15,4 +15,8 @@ Rails.application.routes.draw do
       resources :similar, only: [:index]
     end
   end
+
+  namespace :admin do
+    get "/dashboard", to: "dashboard#index"
+  end
 end
