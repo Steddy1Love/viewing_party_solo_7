@@ -11,7 +11,7 @@ require 'vcr'
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
-  config.filter_sensitive_data('<MOVIE_DB_API_KEY>') { Rails.application.credentials.movie[:key] }
+  config.filter_sensitive_data('<API_KEY>') { Rails.application.credentials.tmdb[:key] }
   config.configure_rspec_metadata!
 end
 # Add additional requires below this line. Rails is not loaded until this point!

@@ -19,34 +19,37 @@ RSpec.describe Movie do
     attrs = {
       id: 201,
       title: "Star Trek: The Next Generation",
-      vote_average: 7.999,
+      vote_average: 79.999,
+      cast: @long_cast,
       runtime: 118,
-      genre: "Sci-Fi",
-      summary: "The next generation of Trek goers"
+      genres: [{id: 1, name: 'Sci-Fi'}, {id: 2, name: "Drama"}],
+      summary: "The next generation of Trek goers",
+      reviews: [{author: "Author 1", content: "Best there is"}, {author: "Author 2", content: 'Over hyped!'}],
+      release_date: 'January',
+      poster_path: 'filename.jpg'
     }
+    @movie = Movie.new(attrs)
   end
   it "exists and has attrs" do
-    movie = Movie.new(attrs)
 
-    expect(movie).to be_a(Movie)
-    expect(movie.id).to eq(201)
-    expect(movie.title).to eq("Star Trek: The Next Generation")
-    expect(movie.vote_average).to eq(7.999)
-    expect(movie.runtime).to eq(1000000)
-    expect(movie.genre).to eq("Sci-Fi")
-    expect(movie.summary).to eq("The next generation of Trek goers")
+    expect(@movie).to be_a(Movie)
+    expect(@movie.id).to eq(201)
+    expect(@movie.title).to eq("Star Trek: The Next Generation")
+    expect(@movie.vote_average).to eq(79.999)
+    expect(@movie.runtime).to eq(118)
+    expect(@movie.summary).to eq("The next generation of Trek goers")
   end
 
   describe '#instance_methods' do
     describe '#runtime_converted' do
       it 'converts the runtime from minutes to hours and minutes' do
-        expect(@movie.runtime_converted).to eq('2 hr 1 min')
+        expect(@movie.runtime_converted).to eq('1 hr 58 min')
       end
     end
 
     describe '#genre_names' do
       it 'joins the genre names together with a comma' do
-        expect(@movie.genre_names).to eq('Romance, Horror')
+        expect(@movie.genre_names).to eq('Sci-Fi, Drama')
       end
     end
 

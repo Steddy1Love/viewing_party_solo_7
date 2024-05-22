@@ -3,20 +3,23 @@ class Movie
               :title,
               :vote_average,
               :runtime,
-              :genre,
-              :summary
+              :summary,
+              :cast,
+              :reviews,
+              :release_date,
+              :poster_path
 
   def initialize(data)
     @id = data[:id]
     @title = data[:title]
     @vote_average = data[:vote_average]
     @runtime = data[:runtime]
-    @genre = data[:genre]
+    @genres = data[:genres]
     @summary = data[:summary]
-    @cast = attributes[:cast]
-    @reviews = attributes[:reviews]
-    @release_date = attributes[:release_date]
-    @poster_path = attributes[:poster_path]
+    @cast = data[:cast]
+    @reviews = data[:reviews]
+    @release_date = data[:release_date]
+    @poster_path = data[:poster_path]
   end
 
   def runtime_converted

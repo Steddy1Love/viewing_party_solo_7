@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Logging In" do
   it "can log in with valid credentials" do
-    user = User.create(name: "Tarzan", email: 'tarzan113@email.com', password: "hunter8")
+    user = User.create(name: "Caesar", email: 'brutus#1fan@email.com', password: "hunter8")
 
     visit root_path
 
@@ -23,7 +23,7 @@ RSpec.describe "Logging In" do
   end
 
   it "cannot log in with bad credentials" do
-    user = User.create(name: "Tarzan", email: 'tarzan113@email.com', password: "hunter8")
+    user = User.create(name: "Caesar", email: 'brutus#1fan@email.com', password: "hunter8")
 
     visit root_path
 

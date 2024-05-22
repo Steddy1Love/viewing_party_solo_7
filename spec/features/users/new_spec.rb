@@ -15,15 +15,15 @@ RSpec.describe 'Create New User', type: :feature do
     end
 
     it 'takes them to their dashboard page when they fill in the form with their name, email, password and password confirmation' do
-      fill_in(:user_name, with: 'Tarzan')
-      fill_in(:user_email, with: 'tarzcan113@yahoo.com')
-      fill_in(:user_password, with: 'password113')
-      fill_in(:user_password_confirmation, with: 'password113')
+      fill_in(:user_name, with: 'Caesar')
+      fill_in(:user_email, with: 'brutus#1fan@yahoo.com')
+      fill_in(:user_password, with: 'password123')
+      fill_in(:user_password_confirmation, with: 'password123')
       click_button('Create New User')
 
       new_user = User.last
 
-      expect(new_user.name).to eq('Tarzan')
+      expect(new_user.name).to eq('Caesar')
       expect(current_path).to eq(user_path(new_user))
       expect(page).to have_content('Successfully Created New User')
     end
@@ -32,7 +32,7 @@ RSpec.describe 'Create New User', type: :feature do
       it 'does something' do
         fill_in(:user_name, with: '')
         fill_in(:user_email, with: '')
-        fill_in(:user_password, with: 'password113')
+        fill_in(:user_password, with: 'password123')
         fill_in(:user_password_confirmation, with: 'password')
         click_button('Create New User')
 
@@ -43,8 +43,8 @@ RSpec.describe 'Create New User', type: :feature do
   end
   describe 'When user visits "/register"' do
     before(:each) do
-      @user = User.create!(name: 'Tommy', email: 'tommy@email.com')
-      @user = User.create!(name: 'Sam', email: 'sam@email.com')
+      @user1 = User.create!(name: 'Eli', email: 'eli@email.com', password: "password123")
+      @user2 = User.create!(name: 'Tov', email: 'tov@email.com', password: "password123")
 
       visit register_user_path
     end
@@ -60,7 +60,8 @@ RSpec.describe 'Create New User', type: :feature do
     
     it 'They see a form to fill in their name, email, password, and password confirmation' do
       expect(page).to have_field("user[name]")
-      expect(page).to have_field('user[email]')
+      expect(page).to have_field("user[email]")
+      expect(page).to have_field("user[password]")
       expect(page).to have_selector(:link_or_button, 'Create New User')    
     end
     
@@ -77,8 +78,8 @@ RSpec.describe 'Create New User', type: :feature do
     end
 
     it 'when they fill in form with information, email (non-unique), submit, redirects to user show page' do
-      fill_in "user[name]", with: 'Tommy'
-      fill_in "user[email]", with: 'tommy@email.com'
+      fill_in "user[name]", with: 'Eli'
+      fill_in "user[email]", with: 'eli@email.com'
 
       click_button 'Create New User'
 
@@ -89,43 +90,46 @@ RSpec.describe 'Create New User', type: :feature do
     it 'when they fill in form with missing information' do
       fill_in "user[name]", with: ""
       fill_in "user[email]", with: ""
+      fill_in "user[password]", with: ""
       click_button 'Create New User'
 
       expect(current_path).to eq(register_user_path)
-      expect(page).to have_content("Name can't be blank, Email can't be blank")
+      expect(page).to have_content("Name can't be blank, Email can't be blank, Password can't be blank")
     end
 
     it 'They fill in form with invalid email format (only somethng@something.something)' do 
-      fill_in "user[name]", with: "Sam"
-      fill_in "user[email]", with: "sam sam@email.co.uk"
+      fill_in "user[name]", with: "Tov"
+      fill_in "user[email]", with: "tov tov@email.co.uk"
+      fill_in "user[password]", with: "password123"
 
       click_button 'Create New User'
 
       expect(current_path).to eq(register_user_path)
       expect(page).to have_content('Email is invalid')
 
-      fill_in "user[name]", with: "Sammy"
-      fill_in "user[email]", with: "sam@email..com"
+      fill_in "user[name]", with: "Sandra"
+      fill_in "user[email]", with: "sandy@email..com"
+      fill_in "user[password]", with: "password123"
       click_button 'Create New User'
 
       expect(current_path).to eq(register_user_path)
       expect(page).to have_content('Email is invalid')
 
-      fill_in "user[name]", with: "Sammy"
-      fill_in "user[email]", with: "sam@emailcom."
+      fill_in "user[name]", with: "Sandra"
+      fill_in "user[email]", with: "sandy@emailcom."
+      fill_in "user[password]", with: "password123"
       click_button 'Create New User'
 
       expect(current_path).to eq(register_user_path)
       expect(page).to have_content('Email is invalid')
 
-      fill_in "user[name]", with: "Sammy"
-      fill_in "user[email]", with: "sam@emailcom@"
+      fill_in "user[name]", with: "Sandra"
+      fill_in "user[email]", with: "sandy@emailcom@"
+      fill_in "user[password]", with: "password123"
       click_button 'Create New User'
 
       expect(current_path).to eq(register_user_path)
       expect(page).to have_content('Email is invalid')
     end
-
-    
   end
 end

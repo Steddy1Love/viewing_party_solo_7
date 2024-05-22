@@ -1,12 +1,14 @@
 class ViewingParty < ApplicationRecord
-   has_many :user_parties
-   has_many :users, through: :user_parties
+  validate :duration_cannot_be_less_than_movie_time
 
-   def find_host
-      users.where("user_parties.host = true").first
-   end
+  has_many :user_parties
+  has_many :users, through: :user_parties
 
-   def duration_cannot_be_less_than_movie_time
+  def find_host
+    users.where('user_parties.host = true').first
+  end
+
+  def duration_cannot_be_less_than_movie_time
     if duration.present? && movie_id.present? && duration < movie.runtime
       errors.add(:duration, "can't be shorter than movie runtime")
     end

@@ -1,0 +1,20 @@
+<div class="container text-center">
+  <h1>Movies Similar to <%= @facade.movie.title %></h1>
+  <div class="row">
+    <% @facade.similar_movies.each do |movie| %>
+      <section class="movie_info d-flex">
+        <div class="movie_poster col-4">
+          <%= image_tag("#{@facade.images}#{movie.poster_path}") %>
+        </div>
+        <div class="col-8 text-start">
+          <ul>
+            <li>Title: <%= movie.title %></li>
+            <li>Summary: <%= movie.summary %></li>
+            <li>Release Date: <%= movie.release_date %></li>
+            <li>Vote: <%= movie.vote_average.round(2) %></li>
+          </ul>
+        </div>
+      </section>
+    <% end %>
+  </div>
+</div>
