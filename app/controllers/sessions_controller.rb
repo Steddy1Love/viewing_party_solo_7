@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user.authenticate(params[:password])
+      binding.pry
       session[:user_id] = user.id
       cookies.encrypted[:user_id] = { value: user.id, expires: 30.days }
       cookies[:location] = params[:location]
