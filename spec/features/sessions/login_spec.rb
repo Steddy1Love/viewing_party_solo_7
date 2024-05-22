@@ -43,7 +43,7 @@ RSpec.describe "Logging In" do
     expect(page).to have_content("Invalid email address or password.")
   end
 
-  describe 'log out' do
+  describe 'log out a user' do
     it 'can log out once you are logged in and returns you to the root page' do
       user = User.create(name: "Caesar", email: 'brutus#1fan@email.com', password: "password123")
 
@@ -92,7 +92,7 @@ RSpec.describe "Logging In" do
     end
   end
 
-  describe 'remember me cookie' do
+  describe 'Part2.2' do
     it 'remembers that you are logged in even when you navigate to a different website' do
       user = User.create(name: "Caesar", email: 'brutus#1fan@email.com', password: "password123")
 
