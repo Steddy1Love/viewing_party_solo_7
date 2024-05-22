@@ -8,9 +8,7 @@
       <li><%= user.email %></li>
     <% end %>
   <% else %>
-   <% @users.each do |user| %>
-      <li><%= link_to user.email, "users/#{user.id}" %></li>
-   <% end %>
+   <h2>You are not logged in</h2>
   <% end %> %>
 </ul>
 
