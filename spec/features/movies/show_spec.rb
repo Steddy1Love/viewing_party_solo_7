@@ -33,7 +33,7 @@ RSpec.describe 'Movie Show Page', type: :feature do
       summary = 'As Lord Voldemort tightens his grip on both the Muggle and wizarding worlds, Hogwarts is no longer'
 
       within '#movie_info' do
-        expect(page).to have_content('Vote: 7.7')
+        expect(page).to have_content('Vote: 7.69')
         expect(page).to have_content('Runtime: 2 hr 33 min')
         expect(page).to have_content('Genre: Adventure, Fantasy')
         expect(page).to have_content(summary)

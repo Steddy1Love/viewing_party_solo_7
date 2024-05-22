@@ -1,0 +1,7 @@
+<div class="container text-center">
+  <h1>Discover Movies</h1>
+  <%= button_to "Find Top Rated Movies", user_movies_path(@user), method: :get, data: { turbo: false } %>
+  <%= form_tag user_movies_path(@user), method: :get, data: { turbo: false } %>
+    <%= text_field_tag :search %>
+  <%= submit_tag "Find Movies" %>
+</div>

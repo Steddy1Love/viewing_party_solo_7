@@ -1,23 +1,25 @@
 class SessionsController < ApplicationController
-  def new
-    
-  end
-  
+  def new; end
+
   def create
-    user = User.find_by(username: params[:username])
+    user = User.find_by(email: params[:email])
+
     if user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.username}"
-      if user.admin?
-        redirect_to admin_dashboard_path
-      elsif user.manager?
-        redirect_to root_path
-      else
-        redirect_to root_path
-      end
+      cookies.encrypted[:user_id] = { value: user.id, expires: 30.days }
+      cookies[:location] = params[:location]
+      flash[:success] = "Welcome, #{user.name}"
+      redirect_to user_path(user)
     else
-      flash[:error] = "Sorry, your credentials are bad."
-      render :login_form
+      flash[:error] = 'Invalid email address or password.'
+      render :new
     end
+  end
+
+  def destroy
+    cookies.delete :user_id
+    reset_session
+    flash[:success] = 'Logged out successfully.'
+    redirect_to root_path
   end
 end

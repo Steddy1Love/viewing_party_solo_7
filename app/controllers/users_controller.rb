@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Successfully Created New User'
       redirect_to user_path(new_user)
     else
-      flash[:error] = error_message(new_user.errors).to_sentence
+      flash[:error] = "#{error_message(new_user.errors)}"
       redirect_to register_user_path
     end
   end
